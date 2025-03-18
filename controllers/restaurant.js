@@ -23,6 +23,13 @@ router.get("/", async (req, res) => {
 
 router.get("/new", async (req, res) => {
   try {
+    const userId = req.session.user._id;
+    const existingRestaurant = await Restaurant.findOne({ owner: userId });
+
+    if (existingRestaurant) {
+      return res.redirect(`/restaurant`);
+    }
+
     res.render("restaurant/new.ejs");
   } catch (error) {
     console.log(error);
@@ -34,17 +41,11 @@ router.post("/", async (req, res) => {
   try {
     const user = await User.findById(req.session.user._id);
 
-    if (!user) {
-      return res.redirect("/auth/sign-in");
-    }
-
     const newRestaurant = new Restaurant({
       name: req.body.name,
       owner: user._id,
     });
 
-    user.restaurant = newRestaurant._id;
-    await user.save();
     await newRestaurant.save();
     res.redirect("/restaurant", { restaurant: newRestaurant });
   } catch (error) {

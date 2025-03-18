@@ -3,17 +3,7 @@
   <%- include('../partials/_head') %>
   <body>
     <div class="restaurant-container">
-      <aside class="sidebar">
-        <h1 class="logo">noodleshop</h1>
-        <h4 class="restaurant-name"><%= restaurant.name %></h4>
-        <nav>
-          <ul>
-            <li><a href="/orders" class="active">Orders</a></li>
-            <li><a href="/stats">Stats</a></li>
-            <li><a href="/settings">Settings</a></li>
-          </ul>
-        </nav>
-      </aside>
+      <%- include('../partials/_sidebar') %>
 
       <main class="main-content">
         <div class="header">
