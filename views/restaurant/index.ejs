@@ -13,10 +13,46 @@
             <li class="header-list-item">💰 Earnings: $1200</li>
             <li class="header-list-item">✅ Orders Completed: 5</li>
           </ul>
-          <button class="btn btn-main">Get orders</button>
+          <form action="/orders" method="POST">
+            <button type="submit" class="btn btn-main">Get orders</button>
+          </form>
         </div>
 
-        <div class="orders-grid"></div>
+        <ul class="orders-grid">
+          <% restaurant.orders.forEach(order => { %>
+          <li class="order-item">
+            <h4 class="order-title">
+              Order #<%= order._id.toString().slice(-6) %>
+            </h4>
+            <p class="order-status"><%= order.status %></p>
+
+            <ul class="order-details">
+              <li class="order-category">
+                <strong>Noodle:</strong> <%= order.item.noodle %>
+              </li>
+              <li class="order-category">
+                <strong>Broth:</strong> <%= order.item.broth %>
+              </li>
+              <li class="order-category">
+                <strong>Protein:</strong> <%= order.item.protein %>
+              </li>
+              <li class="order-category">
+                <strong>Toppings:</strong> <%= order.item.toppings.join(", ") %>
+              </li>
+              <li class="order-category">
+                <strong>Drink:</strong> <%= order.item.drinks.join(", ") %>
+              </li>
+            </ul>
+
+            <p class="order-price">
+              <strong>Price:</strong> $<%= order.item.total_price %>
+            </p>
+            <div class="button-group">
+              <button class="btn btn-secondary">Complete</button>
+            </div>
+          </li>
+          <% }) %>
+        </ul>
       </main>
     </div>
   </body>

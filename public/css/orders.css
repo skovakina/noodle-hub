@@ -1,0 +1,42 @@
+.orders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.order-item {
+  padding: 12px;
+  background: #f9f9f9;
+  border-radius: 5px;
+  background-color: var(--yellow);
+  list-style: none;
+}
+
+.order-title {
+  margin-bottom: 6px;
+  color: var(--black);
+}
+
+.order-status {
+  color: var(--black);
+}
+
+.order-details {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.order-category {
+  font-family: var(--font-primary);
+  color: var(--black);
+  line-height: 1.5;
+}
+
+.order-price {
+  font-family: var(--font-primary);
+  color: var(--black);
+  font-weight: bold;
+  margin-top: 10px;
+}

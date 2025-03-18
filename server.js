@@ -6,9 +6,11 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const morgan = require("morgan");
 const session = require("express-session");
+const bcrypt = require("bcrypt");
 
 const authController = require("./controllers/auth.js");
 const restaurantController = require("./controllers/restaurant.js");
+const ordersController = require("./controllers/orders.js");
 
 const isSignedIn = require("./middleware/is-signed-in.js");
 const passUserToView = require("./middleware/pass-user-to-view.js");
@@ -37,6 +39,28 @@ app.use(
 
 app.use(passUserToView);
 
+// 📌 Auto-login Middleware (Inside server.js)
+app.use(async (req, res, next) => {
+  if (!req.session.user) {
+    let user = await User.findOne({ name: "test_user" });
+
+    if (!user) {
+      user = new User({
+        name: "test_user",
+        email: "test@example.com",
+        password: bcrypt.hashSync("12", 10),
+      });
+
+      await user.save();
+    }
+
+    req.session.user = { _id: user._id, name: user.name };
+    console.log("Auto-logged in as test user");
+  }
+
+  next();
+});
+
 app.get("/", (req, res) => {
   res.render("index.ejs", {
     user: req.session.user,
@@ -46,7 +70,7 @@ app.get("/", (req, res) => {
 app.use("/auth", authController);
 app.use(isSignedIn);
 app.use("/restaurant", restaurantController);
-// app.use("/ingredients", ingredientsController);
+app.use("/orders", ordersController);
 // app.use("/users", usersController);
 
 app.listen(port, () => {

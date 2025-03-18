@@ -8,12 +8,15 @@ console.log("restaurant controller");
 router.get("/", async (req, res) => {
   try {
     const userId = req.session.user._id;
-    const restaurant = await Restaurant.findOne({ owner: userId });
+    const restaurant = await Restaurant.findOne({ owner: userId }).populate({
+      path: "orders",
+      populate: { path: "item" },
+    });
 
     if (!restaurant) {
       return res.redirect("/restaurant/new");
     }
-
+    console.log(restaurant);
     res.render("restaurant/index.ejs", { restaurant });
   } catch (error) {
     console.log(error);

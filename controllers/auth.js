@@ -57,7 +57,7 @@ router.post("/sign-in", async (req, res) => {
       _id: user._id,
     };
 
-    res.redirect("/");
+    res.redirect("/restaurant");
   } catch (error) {
     console.log(error);
     res.redirect("/");

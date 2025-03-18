@@ -1,6 +1,7 @@
 @import url("./sign-up.css");
 @import url("./restaurant.css");
 @import url("./utils.css");
+@import url("./orders.css");
 
 :root {
   --bg-main: #2d2726;
@@ -60,10 +61,6 @@ p {
 .sign-in {
   background-color: var(--orange);
   color: #000;
-}
-
-.btn:hover {
-  opacity: 0.8;
 }
 
 .new-restaurant-container {

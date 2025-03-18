@@ -8,17 +8,28 @@
 }
 
 .btn {
+  font-family: var(--font-primary);
   padding: 10px 20px;
   font-size: 1rem;
   font-weight: bold;
   text-decoration: none;
   flex-grow: 1;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+  opacity: 0.9;
 }
 
 .btn-main {
   background-color: var(--orange);
   color: var(--black);
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+}
+
+.btn-secondary {
+  background-color: var(--black);
+  color: var(--primary);
 }
