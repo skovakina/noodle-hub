@@ -1,0 +1,23 @@
+.button-group {
+  display: flex;
+}
+
+.mt-sm {
+  margin-top: 16px;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  flex-grow: 1;
+}
+
+.btn-main {
+  background-color: var(--orange);
+  color: var(--black);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

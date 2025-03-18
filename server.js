@@ -37,19 +37,19 @@ app.use(
 
 app.use(passUserToView);
 
-app.use(async (req, res, next) => {
-  if (!req.session.user) {
-    let user = await User.findOne({ name: "test" });
-    if (!user)
-      user = await User.create({
-        name: "test",
-        password: bcrypt.hashSync("1234", 10),
-      });
-    req.session.user = { name: user.name, _id: user._id };
-    console.log("Auto-logged in as test user");
-  }
-  next();
-});
+// app.use(async (req, res, next) => {
+//   if (!req.session.user) {
+//     let user = await User.findOne({ name: "test" });
+//     if (!user)
+//       user = await User.create({
+//         name: "test",
+//         password: bcrypt.hashSync("1234", 10),
+//       });
+//     req.session.user = { name: user.name, _id: user._id };
+//     console.log("Auto-logged in as test user");
+//   }
+//   next();
+// });
 
 app.get("/", (req, res) => {
   res.render("index.ejs", {

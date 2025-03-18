@@ -1,5 +1,6 @@
-/* import sign-up.css file */
 @import url("./sign-up.css");
+@import url("./restaurant.css");
+@import url("./utils.css");
 
 :root {
   --bg-main: #2c221c;
@@ -51,21 +52,6 @@ p {
   color: var(--primary);
 }
 
-.button-group {
-  display: flex;
-  gap: 15px;
-}
-
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: 0.3s ease;
-}
-
 .sign-up {
   background-color: var(--primary);
   color: #000;
@@ -80,7 +66,7 @@ p {
   opacity: 0.8;
 }
 
-.restaurant-container {
+.new-restaurant-container {
   padding: 30px;
   border-radius: 8px;
   width: 600px;

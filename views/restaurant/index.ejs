@@ -1,1 +1,34 @@
-<p>this is the restaurant view</p>
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/_head') %>
+  <body>
+    <div class="restaurant-container">
+      <aside class="sidebar">
+        <h1 class="logo">noodleshop</h1>
+        <h6 class="restaurant-name"><%= restaurant.name %></h2>
+        <nav>
+          <ul>
+            <li><a href="/orders" class="active">Orders</a></li>
+            <li><a href="/stats">Stats</a></li>
+            <li><a href="/settings">Settings</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <div class="header">
+          <span>⭐ Rating: <strong> 5.0 </strong></span>
+          <span>💰 Earnings: <strong>$1200</strong></span>
+          <span>📦 Orders Available: <strong>12</strong></span>
+          <span>✅ Orders Completed: <strong>6</strong></span>
+          <button class="btn btn-main">Get orders</button>
+        </div>
+
+        <!-- Orders List -->
+        <div class="orders-grid">
+          <!-- orders grid -->
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

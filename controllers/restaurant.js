@@ -46,7 +46,7 @@ router.post("/", async (req, res) => {
     user.restaurant = newRestaurant._id;
     await user.save();
     await newRestaurant.save();
-    res.redirect("/restaurant");
+    res.redirect("/restaurant", { restaurant: newRestaurant });
   } catch (error) {
     console.log(error);
     res.redirect("/restaurant/new");
