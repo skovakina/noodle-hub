@@ -64,4 +64,64 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.id).populate("item");
+    if (!order) return res.status(404).send("Order not found");
+
+    const restaurant = await Restaurant.findOne({ orders: order._id });
+    if (!restaurant) return res.status(404).send("Restaurant not found");
+
+    res.render("restaurant/order.ejs", {
+      order,
+      restaurant,
+      options,
+    });
+  } catch (error) {
+    console.error(error);
+    res.redirect("/restaurant");
+  }
+});
+
+router.post("/:id/verify", async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.id).populate("item");
+    if (!order) return res.status(404).send("Order not found");
+
+    const { noodle, broth, protein, toppings, drinks } = req.body;
+
+    const selectedNoodle = noodle || "";
+    const selectedBroth = broth || "";
+    const selectedProtein = protein || "";
+    const selectedToppings = Array.isArray(toppings)
+      ? toppings
+      : [toppings].filter(Boolean);
+    const selectedDrinks = Array.isArray(drinks)
+      ? drinks
+      : [drinks].filter(Boolean);
+
+    const correctNoodle = order.item.noodle;
+    const correctBroth = order.item.broth;
+    const correctProtein = order.item.protein;
+    const correctToppings = order.item.toppings.sort();
+    const correctDrinks = order.item.drinks.sort();
+
+    const isCorrect =
+      selectedNoodle === correctNoodle &&
+      selectedBroth === correctBroth &&
+      selectedProtein === correctProtein &&
+      JSON.stringify(selectedToppings.sort()) ===
+        JSON.stringify(correctToppings) &&
+      JSON.stringify(selectedDrinks.sort()) === JSON.stringify(correctDrinks);
+
+    order.status = isCorrect ? "completed" : "failed";
+    await order.save();
+
+    res.redirect("/restaurant");
+  } catch (error) {
+    console.error(error);
+    res.redirect("/restaurant");
+  }
+});
+
 module.exports = router;

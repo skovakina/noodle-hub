@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/_head') %>
+  <body>
+    <div class="restaurant-container">
+      <%- include('../partials/_sidebar') %>
+
+      <main class="main-content">
+        <div class="header">
+          <ul class="header-list">
+            <li class="header-list-item">⭐ Rating: 5.0</li>
+            <li class="header-list-item">📦 Orders: 12</li>
+            <li class="header-list-item">💰 Earnings: $1200</li>
+            <li class="header-list-item">✅ Orders Completed: 5</li>
+          </ul>
+          <form action="/orders" method="POST">
+            <button type="submit" class="btn btn-main">Get orders</button>
+          </form>
+        </div>
+
+        <div class="orders-container">
+          <div class="order-item">
+            <div class="order-content">
+              <h4 class="order-title">
+                Order #<%= order._id.toString().slice(-6) %>
+              </h4>
+              <p class="order-status"><%= order.status %></p>
+
+              <ul class="order-details">
+                <li class="order-category">
+                  <strong>Noodle:</strong> <%= order.item.noodle %>
+                </li>
+                <li class="order-category">
+                  <strong>Broth:</strong> <%= order.item.broth %>
+                </li>
+                <li class="order-category">
+                  <strong>Protein:</strong> <%= order.item.protein %>
+                </li>
+                <li class="order-category">
+                  <strong>Toppings:</strong> <%= order.item.toppings.join(", ")
+                  %>
+                </li>
+                <li class="order-category">
+                  <strong>Drink:</strong> <%= order.item.drinks.join(", ") %>
+                </li>
+              </ul>
+
+              <p class="order-price">
+                <strong>Price:</strong> $<%= order.item.total_price %>
+              </p>
+            </div>
+          </div>
+
+          <div class="order-checklist-container">
+            <form
+              class="order-checklist-form"
+              action="/orders/<%= order._id %>/verify"
+              method="POST"
+            >
+              <h2>Confirm Order by Selecting the Ingredients</h2>
+
+              <ul class="order-checklist">
+                <!-- Noodle Options -->
+                <li class="order-checklist-category">
+                  <h4 class="order-checklist-category-title">Noodle</h4>
+                  <ul class="order-options">
+                    <% options.noodle.forEach(noodle => { %>
+                    <li class="order-option">
+                      <input
+                        type="checkbox"
+                        name="noodle"
+                        value="<%= noodle %>"
+                        class="custom-checkbox"
+                      />
+                      <label class="checkbox-label"><%= noodle %></label>
+                    </li>
+                    <% }) %>
+                  </ul>
+                </li>
+
+                <!-- Broth Options -->
+                <li class="order-checklist-category">
+                  <h4 class="order-checklist-category-title">Broth</h4>
+                  <ul class="order-options">
+                    <% options.broth.forEach(broth => { %>
+                    <li class="order-option">
+                      <input
+                        type="checkbox"
+                        name="broth"
+                        value="<%= broth %>"
+                        class="custom-checkbox"
+                      />
+                      <label class="checkbox-label"><%= broth %></label>
+                    </li>
+                    <% }) %>
+                  </ul>
+                </li>
+
+                <!-- Protein Options -->
+                <li class="order-checklist-category">
+                  <h4 class="order-checklist-category-title">Protein</h4>
+                  <ul class="order-options">
+                    <% options.protein.forEach(protein => { %>
+                    <li class="order-option">
+                      <input
+                        type="checkbox"
+                        name="protein"
+                        value="<%= protein %>"
+                        class="custom-checkbox"
+                      />
+                      <label class="checkbox-label"><%= protein %></label>
+                    </li>
+                    <% }) %>
+                  </ul>
+                </li>
+
+                <!-- Toppings Options -->
+                <li class="order-checklist-category">
+                  <h4 class="order-checklist-category-title">Toppings</h4>
+                  <ul class="order-options">
+                    <% options.toppings.forEach(topping => { %>
+                    <li class="order-option">
+                      <input
+                        type="checkbox"
+                        name="toppings"
+                        value="<%= topping %>"
+                        class="custom-checkbox"
+                      />
+                      <label class="checkbox-label"><%= topping %></label>
+                    </li>
+                    <% }) %>
+                  </ul>
+                </li>
+
+                <!-- Drink Options -->
+                <li class="order-checklist-category">
+                  <h4 class="order-checklist-category-title">Drink</h4>
+                  <ul class="order-options">
+                    <% options.drinks.forEach(drink => { %>
+                    <li class="order-option">
+                      <input
+                        type="checkbox"
+                        name="drinks"
+                        value="<%= drink %>"
+                        class="custom-checkbox"
+                      />
+                      <label class="checkbox-label"><%= drink %></label>
+                    </li>
+                    <% }) %>
+                  </ul>
+                </li>
+              </ul>
+
+              <button type="submit" class="btn btn-main">Submit</button>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

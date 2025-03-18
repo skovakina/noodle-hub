@@ -12,6 +12,7 @@
   border-radius: 5px;
   background-color: var(--yellow);
   list-style: none;
+  max-height: 380px;
 }
 
 .order-content {
@@ -45,4 +46,37 @@
   color: var(--black);
   font-weight: bold;
   margin-top: 10px;
+}
+
+/* complete order view */
+
+.orders-container {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 24px;
+}
+
+.order-checklist {
+  display: grid;
+  gap: 24px;
+}
+
+.order-checklist-category-title {
+  margin-bottom: 6px;
+}
+.order-checklist-form {
+  padding: 16px;
+  display: grid;
+  gap: 24px;
+}
+.order-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 200px);
+}
+
+.order-option {
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }

@@ -33,3 +33,15 @@
   background-color: var(--black);
   color: var(--primary);
 }
+
+input[type="checkbox"] {
+  margin-top: 0;
+  width: 1em;
+  height: 1rem;
+  accent-color: var(--orange);
+}
+
+label {
+  margin-top: 0;
+  font-size: 1rem;
+}
