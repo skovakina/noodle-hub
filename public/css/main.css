@@ -1,0 +1,81 @@
+/* import sign-up.css file */
+@import url("./sign-up.css");
+
+:root {
+  --bg-main: #2c221c;
+  --primary: #e8d8d3;
+  --orange: #f59e42;
+  --yellow: #f6e05e;
+  --black: #171616;
+  --dark-gray: #3d3d3d;
+
+  --font-primary: "Shantell Sans", cursive;
+  --font-secondary: "Source Sans 3", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--primary);
+  font-family: var(--font-secondary);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-primary);
+  font-weight: bold;
+  color: var(--orange);
+}
+
+p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+
+.button-group {
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: 0.3s ease;
+}
+
+.sign-up {
+  background-color: var(--primary);
+  color: #000;
+}
+
+.sign-in {
+  background-color: var(--orange);
+  color: #000;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}

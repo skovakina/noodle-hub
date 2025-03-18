@@ -1,12 +1,14 @@
 <!DOCTYPE html>
+<%- include('./partials/_head') %>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home Page</title>
-  </head>
   <body>
-    <%- include('./partials/_navbar.ejs') %>
-    <h1>Welcome to NoodleHub</h1>
+    <div class="container">
+      <h1>Welcome to Noodle Hub</h1>
+      <p>lorem ipsum dolor sit amet</p>
+      <div class="button-group">
+        <a href="/auth/sign-up" class="btn sign-up">Sign Up</a>
+        <a href="/auth/sign-in" class="btn sign-in">Sign In</a>
+      </div>
+    </div>
   </body>
 </html>
