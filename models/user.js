@@ -14,10 +14,6 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  restaurant: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Restaurant",
-  },
   createdAt: {
     type: Date,
     default: Date.now,

@@ -79,3 +79,10 @@ p {
 .btn:hover {
   opacity: 0.8;
 }
+
+.restaurant-container {
+  padding: 30px;
+  border-radius: 8px;
+  width: 600px;
+  text-align: center;
+}
