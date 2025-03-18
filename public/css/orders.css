@@ -5,11 +5,17 @@
 }
 
 .order-item {
+  display: flex;
+  flex-direction: column;
   padding: 12px;
   background: #f9f9f9;
   border-radius: 5px;
   background-color: var(--yellow);
   list-style: none;
+}
+
+.order-content {
+  flex-grow: 1;
 }
 
 .order-title {
