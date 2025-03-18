@@ -5,7 +5,7 @@
     <div class="restaurant-container">
       <aside class="sidebar">
         <h1 class="logo">noodleshop</h1>
-        <h6 class="restaurant-name"><%= restaurant.name %></h2>
+        <h4 class="restaurant-name"><%= restaurant.name %></h4>
         <nav>
           <ul>
             <li><a href="/orders" class="active">Orders</a></li>
@@ -17,17 +17,16 @@
 
       <main class="main-content">
         <div class="header">
-          <span>⭐ Rating: <strong> 5.0 </strong></span>
-          <span>💰 Earnings: <strong>$1200</strong></span>
-          <span>📦 Orders Available: <strong>12</strong></span>
-          <span>✅ Orders Completed: <strong>6</strong></span>
+          <ul class="header-list">
+            <li class="header-list-item">⭐ Rating: 5.0</li>
+            <li class="header-list-item">📦 Orders: 12</li>
+            <li class="header-list-item">💰 Earnings: $1200</li>
+            <li class="header-list-item">✅ Orders Completed: 5</li>
+          </ul>
           <button class="btn btn-main">Get orders</button>
         </div>
 
-        <!-- Orders List -->
-        <div class="orders-grid">
-          <!-- orders grid -->
-        </div>
+        <div class="orders-grid"></div>
       </main>
     </div>
   </body>
