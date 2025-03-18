@@ -7,6 +7,16 @@ const orderSchema = new mongoose.Schema({
     enum: ["pending", "completed", "cancelled"],
     required: true,
   },
+  total_price: {
+    type: Number,
+    required: true,
+  },
+  rating: {
+    type: Number,
+    min: 0,
+    max: 5,
+    default: null,
+  },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
 });

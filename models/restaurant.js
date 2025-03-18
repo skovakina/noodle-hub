@@ -10,6 +10,22 @@ const restaurantSchema = new mongoose.Schema({
     ref: "User",
   },
   orders: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
+  earnings_total: {
+    type: Number,
+    default: 0,
+  },
+  orders_completed: {
+    type: Number,
+    default: 0,
+  },
+  orders_failed: {
+    type: Number,
+    default: 0,
+  },
+  rating: {
+    type: Number,
+    default: 0,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

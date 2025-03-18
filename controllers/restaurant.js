@@ -3,8 +3,6 @@ const router = express.Router();
 const User = require("../models/user");
 const Restaurant = require("../models/restaurant");
 
-console.log("restaurant controller");
-
 router.get("/", async (req, res) => {
   try {
     const userId = req.session.user._id;
@@ -16,7 +14,7 @@ router.get("/", async (req, res) => {
     if (!restaurant) {
       return res.redirect("/restaurant/new");
     }
-    console.log(restaurant);
+
     res.render("restaurant/index.ejs", { restaurant });
   } catch (error) {
     console.log(error);

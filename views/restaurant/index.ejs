@@ -19,7 +19,8 @@
         </div>
 
         <ul class="orders-grid">
-          <% restaurant.orders.forEach(order => { %>
+          <% restaurant.orders.filter(order => order.status ===
+          "pending").forEach(order => { %>
           <li class="order-item">
             <div class="order-content">
               <h4 class="order-title">
