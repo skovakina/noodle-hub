@@ -6,54 +6,39 @@
       <%- include('../partials/_sidebar') %>
 
       <main class="main-content">
-        <div class="header">
-          <%- include('../partials/_stats') %>
-          <form action="/orders" method="POST">
-            <button type="submit" class="btn btn-main">Get orders</button>
-          </form>
-        </div>
-
-        <ul class="orders-grid">
-          <% restaurant.orders.filter(order => order.status ===
-          "pending").forEach(order => { %>
-          <li class="order-item">
-            <div class="order-content">
-              <h4 class="order-title">
-                Order #<%= order._id.toString().slice(-6) %>
-              </h4>
-              <p class="order-status"><%= order.status %></p>
-
-              <ul class="order-details">
-                <li class="order-category">
-                  <strong>Noodle:</strong> <%= order.item.noodle %>
-                </li>
-                <li class="order-category">
-                  <strong>Broth:</strong> <%= order.item.broth %>
-                </li>
-                <li class="order-category">
-                  <strong>Protein:</strong> <%= order.item.protein %>
-                </li>
-                <li class="order-category">
-                  <strong>Toppings:</strong> <%= order.item.toppings.join(", ")
-                  %>
-                </li>
-                <li class="order-category">
-                  <strong>Drink:</strong> <%= order.item.drinks.join(", ") %>
-                </li>
-              </ul>
-
-              <p class="order-price">
-                <strong>Price:</strong> $<%= order.item.total_price %>
-              </p>
+        <section class="restaurant-stats">
+          <h2 class="stats-title">Restaurant Performance</h2>
+          <div class="stats-container">
+            <div class="stats-card">
+              <h3>📦 Total Orders</h3>
+              <p><%= stats.totalOrders %></p>
             </div>
-            <div class="button-group">
-              <a href="/orders/<%= order._id %>" class="btn btn-secondary"
-                >Complete</a
-              >
+            <div class="stats-card">
+              <h3>✅ Completed Orders</h3>
+              <p><%= stats.completedOrders %></p>
             </div>
-          </li>
-          <% }) %>
-        </ul>
+            <div class="stats-card">
+              <h3>❌ Failed Orders</h3>
+              <p><%= stats.failedOrders %></p>
+            </div>
+            <div class="stats-card">
+              <h3>📌 Pending Orders</h3>
+              <p><%= stats.pendingOrders %></p>
+            </div>
+            <div class="stats-card">
+              <h3>💰 Total Earnings</h3>
+              <p>$<%= stats.totalEarnings %></p>
+            </div>
+            <div class="stats-card">
+              <h3>⭐ Average Rating</h3>
+              <p><%= stats.averageRating %></p>
+            </div>
+            <div class="stats-card">
+              <h3>📅 Created</h3>
+              <p><%= stats.createdAt %></p>
+            </div>
+          </div>
+        </section>
       </main>
     </div>
   </body>

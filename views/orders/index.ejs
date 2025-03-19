@@ -53,11 +53,14 @@
                 <strong>Price:</strong> $<%= order.item.total_price %>
               </p>
             </div>
+            <% if (order.status === "pending") { %>
+
             <div class="button-group">
               <a href="/orders/<%= order._id %>" class="btn btn-secondary">
                 Complete
               </a>
             </div>
+            <% } %>
           </li>
           <% }) %>
         </ul>

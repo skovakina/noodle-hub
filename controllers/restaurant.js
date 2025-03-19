@@ -6,18 +6,35 @@ const Restaurant = require("../models/restaurant");
 router.get("/", async (req, res) => {
   try {
     const userId = req.session.user._id;
-    const restaurant = await Restaurant.findOne({ owner: userId }).populate({
-      path: "orders",
-      populate: { path: "item" },
-    });
+    const restaurant = await Restaurant.findOne({ owner: userId });
 
     if (!restaurant) {
       return res.redirect("/restaurant/new");
     }
-    console.log(restaurant);
-    res.render("orders/index.ejs", { restaurant });
+
+    const formattedCreatedAt = new Date(
+      restaurant.createdAt
+    ).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    const stats = {
+      totalOrders: restaurant.orders.length,
+      completedOrders: restaurant.orders_completed,
+      failedOrders: restaurant.orders_failed,
+      pendingOrders:
+        restaurant.orders.length -
+        (restaurant.orders_completed + restaurant.orders_failed),
+      totalEarnings: restaurant.earnings_total.toFixed(2),
+      averageRating: restaurant.rating.toFixed(1),
+      createdAt: formattedCreatedAt,
+    };
+
+    res.render("restaurant/index.ejs", { restaurant, stats });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.redirect("/");
   }
 });

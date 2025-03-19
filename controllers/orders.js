@@ -157,7 +157,7 @@ router.get("/:id", async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.redirect("/restaurant");
+    res.redirect("/orders");
   }
 });
 
@@ -229,7 +229,7 @@ router.post("/:id/verify", async (req, res) => {
 
     await restaurant.save();
 
-    res.redirect("/restaurant");
+    res.redirect("/orders");
   } catch (error) {
     console.error(error);
     res.redirect("/restaurant");
