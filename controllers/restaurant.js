@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
       return res.redirect("/restaurant/new");
     }
     console.log(restaurant);
-    res.render("restaurant/index.ejs", { restaurant });
+    res.render("orders/index.ejs", { restaurant });
   } catch (error) {
     console.log(error);
     res.redirect("/");
@@ -28,7 +28,7 @@ router.get("/new", async (req, res) => {
     const existingRestaurant = await Restaurant.findOne({ owner: userId });
 
     if (existingRestaurant) {
-      return res.redirect(`/restaurant`);
+      return res.redirect(`/orders`);
     }
 
     res.render("restaurant/new.ejs");
@@ -48,7 +48,7 @@ router.post("/", async (req, res) => {
     });
 
     await newRestaurant.save();
-    res.redirect("/restaurant", { restaurant: newRestaurant });
+    res.redirect("/orders", { restaurant: newRestaurant });
   } catch (error) {
     console.log(error);
     res.redirect("/restaurant/new");

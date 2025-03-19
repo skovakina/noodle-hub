@@ -11,6 +11,7 @@ const bcrypt = require("bcrypt");
 const authController = require("./controllers/auth.js");
 const restaurantController = require("./controllers/restaurant.js");
 const ordersController = require("./controllers/orders.js");
+const settingsController = require("./controllers/settings.js");
 
 const isSignedIn = require("./middleware/is-signed-in.js");
 const passUserToView = require("./middleware/pass-user-to-view.js");
@@ -71,7 +72,7 @@ app.use("/auth", authController);
 app.use(isSignedIn);
 app.use("/restaurant", restaurantController);
 app.use("/orders", ordersController);
-// app.use("/users", usersController);
+app.use("/settings", settingsController);
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);

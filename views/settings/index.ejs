@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/_head') %>
+  <body>
+    <div class="restaurant-container">
+      <%- include('../partials/_sidebar') %>
+      <main class="main-content">
+        <h2>Settings</h2>
+
+        <!-- User Profile Form -->
+        <section class="settings-section">
+          <h3>Update Profile</h3>
+          <form action="/settings/profile" method="POST">
+            <label for="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value="<%= user.name %>"
+              required
+            />
+
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value="<%= user.email %>"
+              required
+            />
+
+            <label for="password">New Password (optional):</label>
+            <input type="password" id="password" name="password" />
+
+            <button type="submit" class="btn btn-main">Save Profile</button>
+          </form>
+        </section>
+
+        <!-- Restaurant Form -->
+        <% if (restaurant) { %>
+        <section class="settings-section">
+          <h3>Manage Restaurant</h3>
+          <form action="/settings/restaurant" method="POST">
+            <label for="restaurant-name">Restaurant Name:</label>
+            <input
+              type="text"
+              id="restaurant-name"
+              name="name"
+              value="<%= restaurant.name %>"
+              required
+            />
+
+            <button type="submit" class="btn btn-main">
+              Update Restaurant
+            </button>
+          </form>
+
+          <form
+            action="/settings/restaurant/delete"
+            method="POST"
+            onsubmit="return confirm('Are you sure?');"
+          >
+            <button type="submit" class="btn btn-danger">
+              Delete Restaurant
+            </button>
+          </form>
+        </section>
+        <% } else { %>
+        <p>You do not own a restaurant.</p>
+        <% } %>
+      </main>
+    </div>
+  </body>
+</html>
