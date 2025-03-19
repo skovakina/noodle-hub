@@ -65,7 +65,7 @@ router.post("/", async (req, res) => {
     });
 
     await newRestaurant.save();
-    res.redirect("/orders", { restaurant: newRestaurant });
+    res.redirect("/orders");
   } catch (error) {
     console.log(error);
     res.redirect("/restaurant/new");
