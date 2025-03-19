@@ -28,7 +28,9 @@
               <h4 class="order-title">
                 Order #<%= order._id.toString().slice(-6) %>
               </h4>
-              <p class="order-status"><%= order.status %></p>
+              <p class="order-status order-status_<%= order.status %>">
+                <%= order.status %>
+              </p>
 
               <ul class="order-details">
                 <li class="order-category">

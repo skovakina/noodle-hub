@@ -17,15 +17,36 @@
 
 .order-content {
   flex-grow: 1;
+  position: relative;
+  margin-bottom: 20px;
 }
 
 .order-title {
   margin-bottom: 6px;
   color: var(--black);
+  padding: 4px 0;
+  margin-bottom: 12px;
 }
 
 .order-status {
+  position: absolute;
+  padding: 4px;
+  font-size: 14px;
   color: var(--black);
+  border-radius: 4px;
+  text-transform: capitalize;
+  top: 0;
+  right: 0;
+}
+
+.order-status_pending {
+  background-color: var(--orange);
+}
+.order-status_completed {
+  background-color: var(--green);
+}
+.order-status_failed {
+  background-color: var(--red);
 }
 
 .order-details {

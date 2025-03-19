@@ -11,6 +11,9 @@
   --yellow: #f6e05e;
   --black: #171616;
   --dark-gray: #3d3d3d;
+  --red: #ff3b30;
+  --green: #36c036;
+  --white: #fff;
 
   --font-primary: "Shantell Sans", cursive;
   --font-secondary: "Fredoka", sans-serif;
@@ -59,7 +62,6 @@ h6 {
 
 p {
   font-size: 1rem;
-  margin-bottom: 20px;
   color: var(--primary);
 }
 
