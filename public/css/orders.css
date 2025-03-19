@@ -13,6 +13,7 @@
   background-color: var(--yellow);
   list-style: none;
   max-height: 380px;
+  max-width: 300px;
 }
 
 .order-content {
