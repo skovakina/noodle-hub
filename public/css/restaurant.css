@@ -25,13 +25,14 @@
   position: fixed;
   display: grid;
   grid-template-columns: 1fr 140px;
-  margin-bottom: 20px;
+  padding-bottom: 20px;
   margin-left: 220px;
-  margin-top: 20px;
+  padding-top: 20px;
   width: calc(100vw - 240px);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: var(--bg-main);
 }
 
 .logo {
@@ -52,6 +53,10 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.menu-group-list li {
+  margin-left: 28px;
 }
 
 .restaurant-name {
