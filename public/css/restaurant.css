@@ -36,11 +36,17 @@
 }
 
 .logo {
+  padding-top: 8px;
+  text-align: center;
+}
+
+.logo a {
+  text-decoration: none;
   color: var(--orange);
 }
 
 .menu {
-  margin-top: 60px;
+  margin-top: 52px;
 }
 
 .menu-group-title {
@@ -79,7 +85,7 @@
 }
 
 .active {
-  background: rgba(230, 216, 214, 0.1);
+  background: var(--bg-secondary);
 }
 
 .header-list {
@@ -90,7 +96,7 @@
 .header-list-item {
   list-style: none;
   border-radius: 4px;
-  background: rgba(230, 216, 214, 0.1);
+  background: var(--bg-secondary);
   display: flex;
   padding: 6px 12px;
   justify-content: center;
@@ -103,4 +109,46 @@
   padding: 10px;
   border: none;
   cursor: pointer;
+}
+
+/* restaurant stats */
+
+.restaurant-stats {
+  border-radius: 8px;
+}
+
+.stats-title {
+  text-align: left;
+}
+
+.stats-subtitle {
+  margin-bottom: 20px;
+}
+
+.stats-label {
+  font-size: 14px;
+  color: var(--parimary);
+  margin-bottom: 5px;
+}
+
+.stats-value {
+  font-size: 28px;
+  color: var(--white);
+}
+
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 15px;
+}
+
+.stats-card {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 4px;
+  background: var(--bg-secondary);
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }

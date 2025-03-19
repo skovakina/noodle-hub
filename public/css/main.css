@@ -6,6 +6,7 @@
 
 :root {
   --bg-main: #2d2726;
+  --bg-secondary: rgba(230, 216, 214, 0.1);
   --primary: #e8d8d3;
   --orange: #f59e42;
   --yellow: #f6e05e;

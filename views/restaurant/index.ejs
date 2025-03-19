@@ -8,34 +8,31 @@
       <main class="main-content">
         <section class="restaurant-stats">
           <h2 class="stats-title">Restaurant Performance</h2>
+          <p class="stats-subtitle">Created on: <%= stats.createdAt %></p>
           <div class="stats-container">
             <div class="stats-card">
-              <h3>📦 Total Orders</h3>
-              <p><%= stats.totalOrders %></p>
+              <p class="stats-label">🍜 Total Orders</p>
+              <p class="stats-value"><%= stats.totalOrders %></p>
             </div>
             <div class="stats-card">
-              <h3>✅ Completed Orders</h3>
-              <p><%= stats.completedOrders %></p>
+              <p class="stats-label">💰 Total Earnings</p>
+              <p class="stats-value">$<%= stats.totalEarnings %></p>
             </div>
             <div class="stats-card">
-              <h3>❌ Failed Orders</h3>
-              <p><%= stats.failedOrders %></p>
+              <p class="stats-label">⭐ Average Rating</p>
+              <p class="stats-value"><%= stats.averageRating %></p>
             </div>
             <div class="stats-card">
-              <h3>📌 Pending Orders</h3>
-              <p><%= stats.pendingOrders %></p>
+              <p class="stats-label">✅ Completed Orders</p>
+              <p class="stats-value"><%= stats.completedOrders %></p>
             </div>
             <div class="stats-card">
-              <h3>💰 Total Earnings</h3>
-              <p>$<%= stats.totalEarnings %></p>
+              <p class="stats-label">❌ Failed Orders</p>
+              <p class="stats-value"><%= stats.failedOrders %></p>
             </div>
             <div class="stats-card">
-              <h3>⭐ Average Rating</h3>
-              <p><%= stats.averageRating %></p>
-            </div>
-            <div class="stats-card">
-              <h3>📅 Created</h3>
-              <p><%= stats.createdAt %></p>
+              <p class="stats-label">📌 Pending Orders</p>
+              <p class="stats-value"><%= stats.pendingOrders %></p>
             </div>
           </div>
         </section>
