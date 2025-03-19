@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const Restaurant = require("../models/restaurant");
 
-// ✅ GET /settings - Render settings page
 router.get("/", async (req, res) => {
   try {
     const user = await User.findById(req.session.user._id);
@@ -17,7 +16,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// ✅ POST /settings/profile - Update user profile
 router.post("/profile", async (req, res) => {
   try {
     const user = await User.findById(req.session.user._id);
@@ -27,7 +25,6 @@ router.post("/profile", async (req, res) => {
     user.name = req.body.name;
     user.email = req.body.email;
 
-    // Only update password if a new one is provided
     if (req.body.password) {
       user.password = bcrypt.hashSync(req.body.password, 10);
     }
@@ -40,7 +37,6 @@ router.post("/profile", async (req, res) => {
   }
 });
 
-// ✅ POST /settings/restaurant - Update restaurant name
 router.post("/restaurant", async (req, res) => {
   try {
     const restaurant = await Restaurant.findOne({
@@ -59,7 +55,6 @@ router.post("/restaurant", async (req, res) => {
   }
 });
 
-// ✅ POST /settings/restaurant/delete - Delete restaurant
 router.post("/restaurant/delete", async (req, res) => {
   try {
     const restaurant = await Restaurant.findOne({
@@ -68,8 +63,12 @@ router.post("/restaurant/delete", async (req, res) => {
 
     if (!restaurant) return res.status(404).send("Restaurant not found");
 
+    if (req.body.confirmName !== restaurant.name) {
+      return res.redirect("/settings?error=wrong-name");
+    }
+
     await Restaurant.findByIdAndDelete(restaurant._id);
-    res.redirect("/settings");
+    res.redirect("/settings?success=deleted");
   } catch (error) {
     console.error(error);
     res.redirect("/settings");

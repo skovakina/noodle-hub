@@ -1,0 +1,17 @@
+.settings-section {
+  max-width: 400px;
+  margin: 32px 0;
+}
+
+.settings-title {
+  margin-bottom: 32px;
+}
+
+.settings-form {
+  padding: 24px 0;
+  border-bottom: 1px solid #dbdbdb6e;
+}
+
+.settings-form-input {
+  margin-bottom: 16px;
+}

@@ -2,6 +2,7 @@
 @import url("./restaurant.css");
 @import url("./utils.css");
 @import url("./orders.css");
+@import url("./settings.css");
 
 :root {
   --bg-main: #2d2726;
@@ -55,6 +56,28 @@ p {
   font-size: 1rem;
   margin-bottom: 20px;
   color: var(--primary);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 6px;
+  margin-top: 4px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  background: var(--primary);
+  color: var(--black);
+  font-family: var(--font-secondary);
+  border: 2px solid transparent;
+}
+
+input:focus {
+  outline: none;
+  border: 2px solid var(--orange);
 }
 
 .sign-up {

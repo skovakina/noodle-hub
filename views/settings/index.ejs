@@ -5,14 +5,15 @@
     <div class="restaurant-container">
       <%- include('../partials/_sidebar') %>
       <main class="main-content">
-        <h2>Settings</h2>
+        <h2 class="settings-title">Settings</h2>
 
         <!-- User Profile Form -->
         <section class="settings-section">
-          <h3>Update Profile</h3>
-          <form action="/settings/profile" method="POST">
+          <h3 class="settings-section-title">Update Profile</h3>
+          <form class="settings-form" action="/settings/profile" method="POST">
             <label for="name">Name:</label>
             <input
+              class="settings-form-input"
               type="text"
               id="name"
               name="name"
@@ -22,6 +23,7 @@
 
             <label for="email">Email:</label>
             <input
+              class="settings-form-input"
               type="email"
               id="email"
               name="email"
@@ -30,7 +32,12 @@
             />
 
             <label for="password">New Password (optional):</label>
-            <input type="password" id="password" name="password" />
+            <input
+              class="settings-form-input"
+              type="password"
+              id="password"
+              name="password"
+            />
 
             <button type="submit" class="btn btn-main">Save Profile</button>
           </form>
@@ -39,10 +46,15 @@
         <!-- Restaurant Form -->
         <% if (restaurant) { %>
         <section class="settings-section">
-          <h3>Manage Restaurant</h3>
-          <form action="/settings/restaurant" method="POST">
+          <h3 class="settings-section-title">Manage Restaurant</h3>
+          <form
+            class="settings-form"
+            action="/settings/restaurant"
+            method="POST"
+          >
             <label for="restaurant-name">Restaurant Name:</label>
             <input
+              class="settings-form-input"
               type="text"
               id="restaurant-name"
               name="name"
@@ -54,20 +66,43 @@
               Update Restaurant
             </button>
           </form>
+          <section class="settings-section">
+            <h3 class="settings-section-title">Danger Zone</h3>
 
-          <form
-            action="/settings/restaurant/delete"
-            method="POST"
-            onsubmit="return confirm('Are you sure?');"
-          >
-            <button type="submit" class="btn btn-danger">
-              Delete Restaurant
-            </button>
-          </form>
+            <form
+              class="settings-form"
+              action="/settings/restaurant/delete"
+              method="POST"
+            >
+              <label for="confirm-delete"
+                >To delete your restaurant, type its exact name below:</label
+              >
+              <input
+                class="settings-form-input"
+                type="text"
+                id="confirm-delete"
+                required
+              />
+              <button
+                type="submit"
+                class="btn btn-danger"
+                id="delete-btn"
+                disabled
+              >
+                Delete Restaurant
+              </button>
+            </form>
+          </section>
         </section>
         <% } else { %>
         <p>You do not own a restaurant.</p>
         <% } %>
+        <section class="settings-section">
+          <h3 class="settings-section-title">Logout</h3>
+          <form class="settings-form" action="/auth/sign-out" method="GET">
+            <button type="submit" class="btn btn-secondary">Logout</button>
+          </form>
+        </section>
       </main>
     </div>
   </body>
