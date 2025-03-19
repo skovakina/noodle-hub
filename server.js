@@ -16,8 +16,6 @@ const settingsController = require("./controllers/settings.js");
 const isSignedIn = require("./middleware/is-signed-in.js");
 const passUserToView = require("./middleware/pass-user-to-view.js");
 
-const User = require("./models/user"); //todo: remove autologin
-
 const port = process.env.PORT ? process.env.PORT : "5000";
 
 mongoose.connect(process.env.MONGODB_URI);
@@ -39,28 +37,6 @@ app.use(
 );
 
 app.use(passUserToView);
-
-// 📌 Auto-login Middleware (Inside server.js)
-app.use(async (req, res, next) => {
-  if (!req.session.user) {
-    let user = await User.findOne({ name: "test_user" });
-
-    if (!user) {
-      user = new User({
-        name: "test_user",
-        email: "test@example.com",
-        password: bcrypt.hashSync("12", 10),
-      });
-
-      await user.save();
-    }
-
-    req.session.user = { _id: user._id, name: user.name };
-    console.log("Auto-logged in as test user");
-  }
-
-  next();
-});
 
 app.get("/", (req, res) => {
   res.render("index.ejs", {

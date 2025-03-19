@@ -112,3 +112,18 @@ input:focus {
 .page-description {
   margin-bottom: 42px;
 }
+
+.form-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-main {
+  padding: 24px 0;
+  border-bottom: 1px solid #dbdbdb6e;
+  width: 100%;
+}
+
+.form-input {
+  margin-bottom: 16px;
+}

@@ -67,7 +67,7 @@ router.post("/restaurant/delete", async (req, res) => {
     }
 
     await Restaurant.findByIdAndDelete(restaurant._id);
-    res.redirect("/");
+    res.redirect("/restaurant/new");
   } catch (error) {
     console.error(error);
     res.redirect("/settings");

@@ -3,14 +3,22 @@
   <%- include('../partials/_head') %>
   <body>
     <div class="signup-container">
-      <h2>Sign In</h2>
-      <p>Fill in the details to get started</p>
-      <form action="/auth/sign-up" method="POST">
+      <h2 class="page-title">Sign Un</h2>
+      <p class="page-description">Fill in the details to get started</p>
+      <form class="form-main" action="/auth/sign-up" method="POST">
         <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="John" required />
+        <input
+          class="form-input"
+          type="text"
+          id="name"
+          name="name"
+          placeholder="John"
+          required
+        />
 
         <label for="email">Email</label>
         <input
+          class="form-input"
           type="email"
           id="email"
           name="email"
@@ -20,6 +28,7 @@
 
         <label for="password">Password</label>
         <input
+          class="form-input"
           type="password"
           id="password"
           name="password"
@@ -29,6 +38,7 @@
 
         <label for="confirmPassword">Confirm Password</label>
         <input
+          class="form-input"
           type="password"
           id="confirmPassword"
           name="confirmPassword"
@@ -36,7 +46,7 @@
           required
         />
         <div class="button-group mt-sm">
-          <button type="submit" class="submit-btn">Submit</button>
+          <button type="submit" class="btn btn-main">Submit</button>
         </div>
       </form>
       <p class="signin-link">
