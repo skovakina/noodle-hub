@@ -138,7 +138,7 @@ router.post("/", async (req, res) => {
     res.redirect("/orders");
   } catch (error) {
     console.error(error);
-    res.redirect("/orders");
+    res.redirect("/");
   }
 });
 

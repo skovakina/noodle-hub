@@ -3,11 +3,12 @@
   <%- include('../partials/_head') %>
   <body>
     <div class="new-restaurant-container">
-      <h2>Create a New Restaurant</h2>
+      <h2 class="new-restaurant-title">Create a New Restaurant</h2>
       <p>Enter your restaurant's name to continue</p>
-      <form action="/restaurant" method="POST">
-        <label for="name">Restaurant Name</label>
+      <form class="new-restaurant-form" action="/restaurant" method="POST">
+        <label class="new-restaurant-label" for="name">Restaurant Name</label>
         <input
+          class="new-restaurant-input"
           type="text"
           id="name"
           name="name"
