@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
     if (!restaurant) {
       return res.redirect("/restaurant/new");
     }
-
+    console.log(restaurant);
     res.render("restaurant/index.ejs", { restaurant });
   } catch (error) {
     console.log(error);

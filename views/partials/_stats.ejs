@@ -1,0 +1,16 @@
+<ul class="header-list">
+  <li class="header-list-item">
+    ⭐ Rating: <%= restaurant.rating.toFixed(1) %>
+  </li>
+  <li class="header-list-item">
+    💰 Earnings: $<%= restaurant.earnings_total.toFixed(2) %>
+  </li>
+  <li class="header-list-item">🍜 Orders: <%= restaurant.orders.length %></li>
+
+  <li class="header-list-item">
+    ✅ Orders Completed: <%= restaurant.orders_completed %>
+  </li>
+  <li class="header-list-item">
+    ❌ Orders Failed: <%= restaurant.orders_failed %>
+  </li>
+</ul>

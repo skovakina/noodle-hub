@@ -4,18 +4,25 @@
   <body>
     <div class="restaurant-container">
       <%- include('../partials/_sidebar') %>
-
+      <header class="header">
+        <%- include('../partials/_stats') %>
+        <form action="/orders" method="POST">
+          <button type="submit" class="btn btn-main">Get orders</button>
+        </form>
+      </header>
       <main class="main-content">
-        <div class="header">
-          <%- include('../partials/_stats') %>
-          <form action="/orders" method="POST">
-            <button type="submit" class="btn btn-main">Get orders</button>
-          </form>
-        </div>
-
+        <% let filteredOrders = restaurant.orders.filter(order => orderFilter
+        === "all" || order.status === orderFilter); %> <% if
+        (filteredOrders.length === 0) { %>
+        <p class="no-orders-message">
+          <% if (orderFilter === "pending") { %> 📦 No pending orders available.
+          <% } else if (orderFilter === "completed") { %> ✅ No completed orders
+          yet. <% } else if (orderFilter === "failed") { %> ❌ No failed orders
+          found. <% } else { %> ℹ️ No orders available. <% } %>
+        </p>
+        <% } else { %>
         <ul class="orders-grid">
-          <% restaurant.orders.filter(order => order.status ===
-          "pending").forEach(order => { %>
+          <% filteredOrders.forEach(order => { %>
           <li class="order-item">
             <div class="order-content">
               <h4 class="order-title">
@@ -47,13 +54,14 @@
               </p>
             </div>
             <div class="button-group">
-              <a href="/orders/<%= order._id %>" class="btn btn-secondary"
-                >Complete</a
-              >
+              <a href="/orders/<%= order._id %>" class="btn btn-secondary">
+                Complete
+              </a>
             </div>
           </li>
           <% }) %>
         </ul>
+        <% } %>
       </main>
     </div>
   </body>

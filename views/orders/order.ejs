@@ -4,20 +4,13 @@
   <body>
     <div class="restaurant-container">
       <%- include('../partials/_sidebar') %>
-
+      <header class="header">
+        <%- include('../partials/_stats') %>
+        <form action="/orders" method="POST">
+          <button type="submit" class="btn btn-main">Get orders</button>
+        </form>
+      </header>
       <main class="main-content">
-        <div class="header">
-          <ul class="header-list">
-            <li class="header-list-item">⭐ Rating: 5.0</li>
-            <li class="header-list-item">📦 Orders: 12</li>
-            <li class="header-list-item">💰 Earnings: $1200</li>
-            <li class="header-list-item">✅ Orders Completed: 5</li>
-          </ul>
-          <form action="/orders" method="POST">
-            <button type="submit" class="btn btn-main">Get orders</button>
-          </form>
-        </div>
-
         <div class="orders-container">
           <div class="order-item">
             <div class="order-content">

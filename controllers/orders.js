@@ -32,6 +32,82 @@ const getRandomToppings = (arr, count = 3) => {
   return shuffled.slice(0, count);
 };
 
+router.get("/", async (req, res) => {
+  try {
+    const userId = req.session.user._id;
+    const restaurant = await Restaurant.findOne({ owner: userId }).populate({
+      path: "orders",
+      populate: { path: "item" },
+    });
+
+    if (!restaurant) {
+      return res.redirect("/restaurant/new");
+    }
+
+    res.render("orders/index.ejs", { restaurant, orderFilter: "all" });
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
+  }
+});
+
+router.get("/pending", async (req, res) => {
+  try {
+    const userId = req.session.user._id;
+    const restaurant = await Restaurant.findOne({ owner: userId }).populate({
+      path: "orders",
+      populate: { path: "item" },
+    });
+
+    if (!restaurant) {
+      return res.redirect("/restaurant/new");
+    }
+
+    res.render("orders/index.ejs", { restaurant, orderFilter: "pending" });
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
+  }
+});
+
+router.get("/completed", async (req, res) => {
+  try {
+    const userId = req.session.user._id;
+    const restaurant = await Restaurant.findOne({ owner: userId }).populate({
+      path: "orders",
+      populate: { path: "item" },
+    });
+
+    if (!restaurant) {
+      return res.redirect("/restaurant/new");
+    }
+
+    res.render("orders/index.ejs", { restaurant, orderFilter: "completed" });
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
+  }
+});
+
+router.get("/failed", async (req, res) => {
+  try {
+    const userId = req.session.user._id;
+    const restaurant = await Restaurant.findOne({ owner: userId }).populate({
+      path: "orders",
+      populate: { path: "item" },
+    });
+
+    if (!restaurant) {
+      return res.redirect("/restaurant/new");
+    }
+
+    res.render("orders/index.ejs", { restaurant, orderFilter: "failed" });
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
+  }
+});
+
 router.post("/", async (req, res) => {
   try {
     const userId = req.session.user._id;
@@ -59,10 +135,10 @@ router.post("/", async (req, res) => {
     restaurant.orders.push(newOrder._id);
     await restaurant.save();
 
-    res.redirect("/restaurant");
+    res.redirect("/orders");
   } catch (error) {
     console.error(error);
-    res.redirect("/restaurant");
+    res.redirect("/orders");
   }
 });
 
@@ -74,7 +150,7 @@ router.get("/:id", async (req, res) => {
     const restaurant = await Restaurant.findOne({ orders: order._id });
     if (!restaurant) return res.status(404).send("Restaurant not found");
 
-    res.render("restaurant/order.ejs", {
+    res.render("orders/order.ejs", {
       order,
       restaurant,
       options,
