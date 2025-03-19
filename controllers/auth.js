@@ -5,12 +5,12 @@ const bcrypt = require("bcrypt");
 const User = require("../models/user.js");
 
 router.get("/sign-up", (req, res) => {
-  if (req.session.user) return res.redirect("/orders");
+  if (req.session.user) return res.redirect("/restaurant");
   res.render("auth/sign-up.ejs");
 });
 
 router.get("/sign-in", (req, res) => {
-  if (req.session.user) return res.redirect("/orders");
+  if (req.session.user) return res.redirect("/restaurant");
   res.render("auth/sign-in.ejs");
 });
 
@@ -23,11 +23,15 @@ router.post("/sign-up", async (req, res) => {
   try {
     const user = await User.findOne({ name: req.body.name });
     if (user) {
-      return res.send("Username already taken.");
+      return res.render("error.ejs", {
+        message: "Username already taken. Please choose another one.",
+      });
     }
 
     if (req.body.password !== req.body.confirmPassword) {
-      return res.send("Password and Confirm Password must match");
+      return res.render("error.ejs", {
+        message: "Password and Confirm Password must match",
+      });
     }
 
     const hashedPassword = bcrypt.hashSync(req.body.password, 10);
@@ -38,7 +42,9 @@ router.post("/sign-up", async (req, res) => {
     res.redirect("/auth/sign-in");
   } catch (error) {
     console.log(error);
-    res.redirect("/");
+    res.render("error.ejs", {
+      message: "Something went wrong. Please try again later.",
+    });
   }
 });
 
@@ -47,12 +53,16 @@ router.post("/sign-in", async (req, res) => {
     const user = await User.findOne({ name: req.body.name });
     console.log(user);
     if (!user) {
-      return res.send("Login failed. Please try again.");
+      return res.render("error.ejs", {
+        message: "Login failed. Please check your credentials and try again.",
+      });
     }
 
     const validPassword = bcrypt.compareSync(req.body.password, user.password);
     if (!validPassword) {
-      return res.send("Login failed. Please try again.");
+      return res.render("error.ejs", {
+        message: "Login failed. Please check your credentials and try again.",
+      });
     }
 
     req.session.user = {
@@ -63,7 +73,9 @@ router.post("/sign-in", async (req, res) => {
     res.redirect("/restaurant");
   } catch (error) {
     console.log(error);
-    res.redirect("/");
+    res.render("error.ejs", {
+      message: "Something went wrong. Please try again later.",
+    });
   }
 });
 

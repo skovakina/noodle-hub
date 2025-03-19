@@ -32,7 +32,7 @@ const getRandomToppings = (arr, count = 3) => {
   return shuffled.slice(0, count);
 };
 
-router.get("/", async (req, res) => {
+router.get("/:status?", async (req, res) => {
   try {
     const userId = req.session.user._id;
     const restaurant = await Restaurant.findOne({ owner: userId }).populate({
@@ -44,64 +44,9 @@ router.get("/", async (req, res) => {
       return res.redirect("/restaurant/new");
     }
 
-    res.render("orders/index.ejs", { restaurant, orderFilter: "all" });
-  } catch (error) {
-    console.log(error);
-    res.redirect("/");
-  }
-});
+    const orderFilter = req.params.status || "all";
 
-router.get("/pending", async (req, res) => {
-  try {
-    const userId = req.session.user._id;
-    const restaurant = await Restaurant.findOne({ owner: userId }).populate({
-      path: "orders",
-      populate: { path: "item" },
-    });
-
-    if (!restaurant) {
-      return res.redirect("/restaurant/new");
-    }
-
-    res.render("orders/index.ejs", { restaurant, orderFilter: "pending" });
-  } catch (error) {
-    console.log(error);
-    res.redirect("/");
-  }
-});
-
-router.get("/completed", async (req, res) => {
-  try {
-    const userId = req.session.user._id;
-    const restaurant = await Restaurant.findOne({ owner: userId }).populate({
-      path: "orders",
-      populate: { path: "item" },
-    });
-
-    if (!restaurant) {
-      return res.redirect("/restaurant/new");
-    }
-
-    res.render("orders/index.ejs", { restaurant, orderFilter: "completed" });
-  } catch (error) {
-    console.log(error);
-    res.redirect("/");
-  }
-});
-
-router.get("/failed", async (req, res) => {
-  try {
-    const userId = req.session.user._id;
-    const restaurant = await Restaurant.findOne({ owner: userId }).populate({
-      path: "orders",
-      populate: { path: "item" },
-    });
-
-    if (!restaurant) {
-      return res.redirect("/restaurant/new");
-    }
-
-    res.render("orders/index.ejs", { restaurant, orderFilter: "failed" });
+    res.render("orders/index.ejs", { restaurant, orderFilter });
   } catch (error) {
     console.log(error);
     res.redirect("/");
@@ -224,7 +169,7 @@ router.post("/:id/verify", async (req, res) => {
       const totalRating = completedOrders.reduce((sum, o) => sum + o.rating, 0);
       restaurant.rating = totalRating / completedOrders.length;
     } else {
-      restaurant.rating = 0; // Reset if no completed orders
+      restaurant.rating = 0;
     }
 
     await restaurant.save();
