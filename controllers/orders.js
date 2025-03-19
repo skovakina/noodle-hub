@@ -32,7 +32,7 @@ const getRandomToppings = (arr, count = 3) => {
   return shuffled.slice(0, count);
 };
 
-router.get("/:status?", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const userId = req.session.user._id;
     const restaurant = await Restaurant.findOne({ owner: userId }).populate({
@@ -40,15 +40,62 @@ router.get("/:status?", async (req, res) => {
       populate: { path: "item" },
     });
 
-    if (!restaurant) {
-      return res.redirect("/restaurant/new");
-    }
+    if (!restaurant) return res.redirect("/restaurant/new");
 
-    const orderFilter = req.params.status || "all";
-
-    res.render("orders/index.ejs", { restaurant, orderFilter });
+    res.render("orders/index.ejs", { restaurant, orderFilter: "all" });
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    res.redirect("/");
+  }
+});
+
+router.get("/pending", async (req, res) => {
+  try {
+    const userId = req.session.user._id;
+    const restaurant = await Restaurant.findOne({ owner: userId }).populate({
+      path: "orders",
+      populate: { path: "item" },
+    });
+
+    if (!restaurant) return res.redirect("/restaurant/new");
+
+    res.render("orders/index.ejs", { restaurant, orderFilter: "pending" });
+  } catch (error) {
+    console.error(error);
+    res.redirect("/");
+  }
+});
+
+router.get("/completed", async (req, res) => {
+  try {
+    const userId = req.session.user._id;
+    const restaurant = await Restaurant.findOne({ owner: userId }).populate({
+      path: "orders",
+      populate: { path: "item" },
+    });
+
+    if (!restaurant) return res.redirect("/restaurant/new");
+
+    res.render("orders/index.ejs", { restaurant, orderFilter: "completed" });
+  } catch (error) {
+    console.error(error);
+    res.redirect("/");
+  }
+});
+
+router.get("/failed", async (req, res) => {
+  try {
+    const userId = req.session.user._id;
+    const restaurant = await Restaurant.findOne({ owner: userId }).populate({
+      path: "orders",
+      populate: { path: "item" },
+    });
+
+    if (!restaurant) return res.redirect("/restaurant/new");
+
+    res.render("orders/index.ejs", { restaurant, orderFilter: "failed" });
+  } catch (error) {
+    console.error(error);
     res.redirect("/");
   }
 });
