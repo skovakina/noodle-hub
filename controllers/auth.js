@@ -5,10 +5,12 @@ const bcrypt = require("bcrypt");
 const User = require("../models/user.js");
 
 router.get("/sign-up", (req, res) => {
+  if (req.session.user) return res.redirect("/orders");
   res.render("auth/sign-up.ejs");
 });
 
 router.get("/sign-in", (req, res) => {
+  if (req.session.user) return res.redirect("/orders");
   res.render("auth/sign-in.ejs");
 });
 
