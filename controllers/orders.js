@@ -32,6 +32,32 @@ const getRandomToppings = (arr, count = 3) => {
   return shuffled.slice(0, count);
 };
 
+const updateRestaurantStats = async (restaurant) => {
+  const allOrders = await Order.find({ _id: { $in: restaurant.orders } });
+
+  restaurant.orders_completed = allOrders.filter(
+    (o) => o.status === "completed"
+  ).length;
+  restaurant.orders_failed = allOrders.filter(
+    (o) => o.status === "failed"
+  ).length;
+  restaurant.earnings_total = allOrders
+    .filter((o) => o.status === "completed")
+    .reduce((sum, o) => sum + parseFloat(o.total_price), 0);
+
+  // calculate restaurant rating
+  const completedOrders = allOrders.filter((o) => o.status === "completed");
+  if (completedOrders.length > 0) {
+    const totalRating = completedOrders.reduce((sum, o) => sum + o.rating, 0);
+
+    restaurant.rating = (totalRating / restaurant.orders.length).toFixed(1);
+  } else {
+    restaurant.rating = 0;
+  }
+
+  await restaurant.save();
+};
+
 router.get("/", async (req, res) => {
   try {
     const userId = req.session.user._id;
@@ -94,6 +120,7 @@ router.get("/failed", async (req, res) => {
     if (!restaurant) return res.redirect("/restaurant/new");
 
     res.render("orders/index.ejs", { restaurant, orderFilter: "failed" });
+    console.log("Orders:", restaurant);
   } catch (error) {
     console.error(error);
     res.redirect("/");
@@ -196,28 +223,7 @@ router.post("/:id/verify", async (req, res) => {
     }
     await order.save();
 
-    // calculate restaurant stats
-    const allOrders = await Order.find({ _id: { $in: restaurant.orders } });
-
-    // Compute updated stats
-    restaurant.orders_completed = allOrders.filter(
-      (o) => o.status === "completed"
-    ).length;
-    restaurant.orders_failed = allOrders.filter(
-      (o) => o.status === "failed"
-    ).length;
-    restaurant.earnings_total = allOrders
-      .filter((o) => o.status === "completed")
-      .reduce((sum, o) => sum + parseFloat(o.total_price), 0);
-
-    // Calculate average rating from completed orders
-    const completedOrders = allOrders.filter((o) => o.status === "completed");
-    if (completedOrders.length > 0) {
-      const totalRating = completedOrders.reduce((sum, o) => sum + o.rating, 0);
-      restaurant.rating = totalRating / completedOrders.length;
-    } else {
-      restaurant.rating = 0;
-    }
+    await updateRestaurantStats(restaurant);
 
     await restaurant.save();
 
