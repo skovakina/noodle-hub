@@ -50,7 +50,10 @@ const updateRestaurantStats = async (restaurant) => {
   if (completedOrders.length > 0) {
     const totalRating = completedOrders.reduce((sum, o) => sum + o.rating, 0);
 
-    restaurant.rating = (totalRating / restaurant.orders.length).toFixed(1);
+    restaurant.rating = (
+      totalRating /
+      (completedOrders.length + restaurant.orders_failed)
+    ).toFixed(1);
   } else {
     restaurant.rating = 0;
   }
