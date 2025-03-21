@@ -5,7 +5,7 @@
 Noodle Hub is a web application where users can create and manage their own virtual noodle restaurant. The goal is to complete as many orders as possible to grow your restaurant. As you fulfill more orders, your business expands! You can update your restaurant name anytime or delete it and start fresh.
 
 ## Getting Started
-- **Play the App:** [Deployed Noodle Hub]([#](https://noodle-hub-2538668b8bc0.herokuapp.com/)
+- **Play the App:** [Deployed Noodle Hub]((https://noodle-hub-2538668b8bc0.herokuapp.com/)
 - **Planning Materials:** [Project Planning](https://trello.com/invite/b/67d4b116be3faf3d8560e857/ATTIb452212ae7fa58cb953d23e9d2478ddbD103CA80/noodle-shop)
 - **Design:** [Figma](https://www.figma.com/design/9pTd6Es3s5SVwVK8e7ISwM/NoodleShop-Wires?node-id=0-1&t=jwAN0YJCoxleLV6P-1)
 
