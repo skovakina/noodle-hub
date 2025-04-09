@@ -28,11 +28,11 @@
 
 .btn-main {
   background-color: var(--orange);
-  color: var(--black);
+  color: var(--white);
 }
 
 .btn-secondary {
-  background-color: var(--black);
+  background-color: var(--white);
   color: var(--primary);
 }
 

@@ -16,6 +16,7 @@
   --red: #ff3b30;
   --green: #36c036;
   --white: #fff;
+  --bg-input: #f1e8e5;
 
   --font-primary: "Shantell Sans", cursive;
   --font-secondary: "Fredoka", sans-serif;
@@ -42,17 +43,18 @@ body {
 }
 
 [data-theme="light"]:root {
-  --bg-main: #f8f8f8;
+  --bg-main: #f3f3f3;
   --bg-secondary: rgba(0, 0, 0, 0.03);
   --bg-dark: #eaeaea;
   --primary: #1a1a1a;
-  --orange: #f78e42;
-  --yellow: #e6d400;
+  --orange: #da7730;
+  --yellow: #faee6c;
   --black: #000;
   --dark-gray: #777;
   --red: #cc0000;
   --green: #1d861d;
   --white: #fff;
+  --bg-input: var(--white);
 }
 
 strong {
@@ -101,7 +103,7 @@ input {
   border: none;
   border-radius: 6px;
   font-size: 14px;
-  background: var(--primary);
+  background: var(--bg-input);
   color: var(--black);
   font-family: var(--font-secondary);
   border: 2px solid transparent;
