@@ -24,6 +24,15 @@
         <ul class="orders-grid">
           <% filteredOrders.forEach(order => { %>
           <li class="order-item">
+            <% const noodleImage =
+            order.item.noodle.toLowerCase().replace(/\s+/g, "-") + ".png"; %>
+            <img
+              class="order-image"
+              src="/assets/<%= noodleImage %>"
+              alt="<%= order.item.noodle %>"
+              onerror="this.src='/assets/default-noodle.png'"
+            />
+
             <div class="order-content">
               <h4 class="order-title">
                 Order #<%= order._id.toString().slice(-6) %>
