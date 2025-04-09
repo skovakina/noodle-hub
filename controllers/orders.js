@@ -3,6 +3,7 @@ const router = express.Router();
 const Order = require("../models/order");
 const Item = require("../models/item");
 const Restaurant = require("../models/restaurant");
+const Menu = require("../models/menu");
 
 const options = {
   noodle: ["Ramen", "Udon", "Soba", "Rice Noodles", "Egg Noodles"],
@@ -135,12 +136,15 @@ router.post("/", async (req, res) => {
     const userId = req.session.user._id;
     const restaurant = await Restaurant.findOne({ owner: userId });
     const totalPrice = (Math.random() * (18 - 12) + 12).toFixed(2);
+
+    const menu = await Menu.findOne({ restaurant: restaurant._id });
+
     const randomItem = new Item({
-      noodle: getRandomElement(options.noodle),
-      broth: getRandomElement(options.broth),
-      protein: getRandomElement(options.protein),
-      toppings: getRandomToppings(options.toppings, 3),
-      drinks: getRandomToppings(options.drinks, 1),
+      noodle: getRandomElement(menu?.noodle || []),
+      broth: getRandomElement(menu?.broth || []),
+      protein: getRandomElement(menu?.protein || []),
+      toppings: getRandomToppings(menu?.toppings || [], 3),
+      drinks: getRandomToppings(menu?.drinks || [], 1),
       total_price: totalPrice,
     });
 
@@ -172,10 +176,14 @@ router.get("/:id", async (req, res) => {
     const restaurant = await Restaurant.findOne({ orders: order._id });
     if (!restaurant) return res.status(404).send("Restaurant not found");
 
+    const menu = await Menu.findOne({ restaurant: restaurant._id });
+    console.log("Menu:", menu);
+
     res.render("orders/order.ejs", {
       order,
       restaurant,
       options,
+      options: menu || defaultOptions,
     });
   } catch (error) {
     console.error(error);
