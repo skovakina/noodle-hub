@@ -28,12 +28,12 @@
 
 .btn-main {
   background-color: var(--orange);
-  color: var(--black);
+  color: var(--contrast-1);
 }
 
 .btn-secondary {
-  background-color: var(--black);
-  color: var(--primary);
+  background-color: var(--contrast-1);
+  color: var(--contrast-2);
 }
 
 .btn-danger {
@@ -51,4 +51,50 @@ input[type="checkbox"] {
 label {
   margin-top: 0;
   font-size: 1rem;
+}
+
+/* Theme toggle switch */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-family: var(--font-secondary);
+  font-size: 0.9rem;
+  user-select: none;
+  margin: 20px;
+}
+
+.theme-toggle input {
+  display: none;
+}
+
+.theme-toggle .slider {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  background-color: var(--dark-gray);
+  border-radius: 34px;
+  transition: background-color 0.3s ease;
+}
+
+.theme-toggle .slider::before {
+  content: "";
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: var(--white);
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+/* When checked */
+.theme-toggle input:checked + .slider {
+  background-color: var(--orange);
+}
+
+.theme-toggle input:checked + .slider::before {
+  transform: translateX(20px);
 }
