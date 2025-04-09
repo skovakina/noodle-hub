@@ -18,3 +18,27 @@ function goBack() {
     window.location.href = "/"; // Fallback if no history exists
   }
 }
+
+function setupThemeToggle() {
+  const toggle = document.getElementById("themeToggle");
+  const html = document.documentElement;
+
+  if (!toggle) return;
+
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "light") {
+    html.setAttribute("data-theme", "light");
+    toggle.checked = true;
+  }
+
+  toggle.addEventListener("change", () => {
+    if (toggle.checked) {
+      html.setAttribute("data-theme", "light");
+      localStorage.setItem("theme", "light");
+    } else {
+      html.removeAttribute("data-theme");
+      localStorage.setItem("theme", "dark");
+    }
+  });
+}
+setupThemeToggle();

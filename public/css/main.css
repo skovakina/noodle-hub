@@ -41,6 +41,20 @@ body {
   line-height: 1;
 }
 
+[data-theme="light"]:root {
+  --bg-main: #f8f8f8;
+  --bg-secondary: rgba(0, 0, 0, 0.03);
+  --bg-dark: #eaeaea;
+  --primary: #1a1a1a;
+  --orange: #f78e42;
+  --yellow: #e6d400;
+  --black: #000;
+  --dark-gray: #777;
+  --red: #cc0000;
+  --green: #1d861d;
+  --white: #fff;
+}
+
 strong {
   font-weight: 500;
 }
