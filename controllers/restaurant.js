@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
 const Restaurant = require("../models/restaurant");
+const Order = require("../models/order");
 
 router.get("/", async (req, res) => {
   try {
@@ -32,7 +33,12 @@ router.get("/", async (req, res) => {
       createdAt: formattedCreatedAt,
     };
 
-    res.render("restaurant/index.ejs", { restaurant, stats });
+    const recentOrders = await Order.find({ _id: { $in: restaurant.orders } })
+      .sort({ createdAt: -1 })
+      .limit(5)
+      .populate("item");
+
+    res.render("restaurant/index.ejs", { restaurant, stats, recentOrders });
   } catch (error) {
     console.error(error);
     res.redirect("/");

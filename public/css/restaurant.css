@@ -86,6 +86,10 @@
   border-radius: 4px;
 }
 
+.menu-item:hover {
+  background: var(--bg-dark);
+}
+
 .active {
   background: var(--bg-secondary);
 }
@@ -169,4 +173,12 @@
 
 .new-restaurant-input {
   margin-bottom: 20px;
+}
+
+.recent-orders {
+  margin-top: 32px;
+}
+
+.recent-orders-title {
+  margin-bottom: 12px;
 }
