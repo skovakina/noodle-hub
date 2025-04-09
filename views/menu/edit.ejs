@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/_head') %>
+  <body>
+    <div class="restaurant-container">
+      <%- include('../partials/_sidebar') %>
+
+      <header class="header">
+        <%- include('../partials/_stats') %>
+        <form action="/orders" method="POST">
+          <button type="submit" class="btn btn-main">Get orders</button>
+        </form>
+      </header>
+
+      <main class="main-content">
+        <div class="order-checklist-container">
+          <form class="order-checklist-form" action="/menu" method="POST">
+            <h2>Edit Your Restaurant Menu</h2>
+
+            <ul class="order-checklist">
+              <% for (let category in defaultOptions) { %>
+              <li class="order-checklist-category">
+                <h4 class="order-checklist-category-title">
+                  <%= category.charAt(0).toUpperCase() + category.slice(1) %>
+                </h4>
+                <ul class="order-options">
+                  <% defaultOptions[category].forEach(option => { %>
+                  <li class="order-option">
+                    <input type="checkbox" name="<%= category %>" value="<%=
+                    option %>" class="custom-checkbox" <%=
+                    menu[category].includes(option) ? "checked" : "" %> />
+                    <label class="checkbox-label"><%= option %></label>
+                  </li>
+                  <% }) %>
+                </ul>
+              </li>
+              <% } %>
+            </ul>
+
+            <button type="submit" class="btn btn-main">Save Menu</button>
+          </form>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

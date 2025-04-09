@@ -3,6 +3,29 @@ const router = express.Router();
 const User = require("../models/user");
 const Restaurant = require("../models/restaurant");
 const Order = require("../models/order");
+const Item = require("../models/item");
+const Menu = require("../models/menu");
+
+const defaultOptions = {
+  noodle: ["Ramen", "Udon", "Soba", "Rice Noodles", "Egg Noodles"],
+  broth: ["Pork Bone Broth", "Miso", "Vegetable Broth", "Chicken Broth"],
+  protein: ["Pork", "Chicken", "Tofu"],
+  toppings: [
+    "Soft-Boiled Egg",
+    "Scallions",
+    "Baby Spinach",
+    "Corn",
+    "Tofu (Fried or Silken)",
+    "Bamboo Shoots",
+    "Wood Ear Mushrooms",
+    "Crispy Garlic",
+    "Shrimp",
+    "Bean Sprouts",
+    "Nori (Seaweed)",
+    "Chili Oil",
+  ],
+  drinks: ["Green Tea", "Soda", "Thai Iced Tea"],
+};
 
 router.get("/", async (req, res) => {
   try {
@@ -11,6 +34,16 @@ router.get("/", async (req, res) => {
 
     if (!restaurant) {
       return res.redirect("/restaurant/new");
+    }
+
+    const existingMenu = await Menu.findOne({ restaurant: restaurant._id });
+
+    if (!existingMenu) {
+      const newMenu = new Menu({
+        restaurant: restaurant._id,
+        ...defaultOptions,
+      });
+      await newMenu.save();
     }
 
     const formattedCreatedAt = new Date(
@@ -71,6 +104,14 @@ router.post("/", async (req, res) => {
     });
 
     await newRestaurant.save();
+
+    const newMenu = new Menu({
+      restaurant: newRestaurant._id,
+      ...defaultOptions,
+    });
+
+    await newMenu.save();
+
     res.redirect("/orders");
   } catch (error) {
     console.log(error);

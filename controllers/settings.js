@@ -62,9 +62,12 @@ router.post("/restaurant/delete", async (req, res) => {
     });
 
     if (!restaurant) return res.status(404).send("Restaurant not found");
+
     if (req.body.confirmName !== restaurant.name) {
       return res.redirect("/settings");
     }
+
+    await Menu.findOneAndDelete({ restaurant: restaurant._id });
 
     await Restaurant.findByIdAndDelete(restaurant._id);
     res.redirect("/restaurant/new");
