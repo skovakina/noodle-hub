@@ -28,13 +28,16 @@
   display: grid;
   grid-template-columns: 1fr 140px;
   padding-bottom: 20px;
-  margin-left: 220px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: 200px;
   padding-top: 20px;
-  width: calc(100vw - 240px);
+  width: calc(100vw - 200px);
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: var(--bg-main);
+  z-index: 100;
 }
 
 .logo {
