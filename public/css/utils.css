@@ -28,12 +28,12 @@
 
 .btn-main {
   background-color: var(--orange);
-  color: var(--white);
+  color: var(--contrast-1);
 }
 
 .btn-secondary {
-  background-color: var(--white);
-  color: var(--primary);
+  background-color: var(--contrast-1);
+  color: var(--contrast-2);
 }
 
 .btn-danger {

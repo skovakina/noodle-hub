@@ -8,6 +8,8 @@
   --bg-main: #2d2726;
   --bg-secondary: rgba(230, 216, 214, 0.1);
   --bg-dark: #221d1c;
+  --contrast-1: #000;
+  --contrast-2: #fff;
   --primary: #f1e8e5;
   --orange: #f59e42;
   --yellow: #f8e681;
@@ -46,6 +48,8 @@ body {
   --bg-main: #f3f3f3;
   --bg-secondary: rgba(0, 0, 0, 0.03);
   --bg-dark: #eaeaea;
+  --contrast-1: #fff;
+  --contrast-2: #000;
   --primary: #1a1a1a;
   --orange: #da7730;
   --yellow: #faee6c;
