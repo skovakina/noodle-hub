@@ -1,5 +1,6 @@
 # Noodle Hub
-![image](https://github.com/user-attachments/assets/615407ef-84d5-4645-951d-6f5e06b77cd5)
+![Screenshot 2025-04-08 214046](https://github.com/user-attachments/assets/64bb058e-5728-467e-92a0-54e079cbeda6)
+
 
 ## About Noodle Hub
 Noodle Hub is a web application where users can create and manage their own virtual noodle restaurant. The goal is to complete as many orders as possible to grow your restaurant. As you fulfill more orders, your business expands! You can update your restaurant name anytime or delete it and start fresh.
