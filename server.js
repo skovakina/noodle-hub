@@ -15,6 +15,7 @@ const settingsController = require("./controllers/settings.js");
 
 const isSignedIn = require("./middleware/is-signed-in.js");
 const passUserToView = require("./middleware/pass-user-to-view.js");
+const Restaurant = require("./models/restaurant");
 
 const port = process.env.PORT ? process.env.PORT : "5000";
 
@@ -38,10 +39,21 @@ app.use(
 
 app.use(passUserToView);
 
-app.get("/", (req, res) => {
-  res.render("index.ejs", {
-    user: req.session.user,
-  });
+app.get("/", async (req, res) => {
+  try {
+    const leaderboard = await Restaurant.find({})
+      .sort({ rating: -1 })
+      .limit(10);
+
+    res.render("index.ejs", {
+      leaderboard,
+    });
+  } catch (err) {
+    console.error("Error fetching leaderboard:", err);
+    res.render("index.ejs", {
+      leaderboard: [],
+    });
+  }
 });
 
 app.use("/auth", authController);

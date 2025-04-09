@@ -127,3 +127,35 @@ input:focus {
 .form-input {
   margin-bottom: 16px;
 }
+
+.leaderboard-section {
+  margin-top: 32px;
+  padding: 24px;
+  border-radius: 12px;
+  background-color: var(--bg-secondary);
+  border: 1px solid #dbdbdb6e;
+}
+.leaderboard {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  row-gap: 12px;
+  column-gap: 16px;
+  max-width: 500px;
+}
+
+.leaderboard-title {
+  margin-bottom: 16px;
+}
+
+.stars {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.star {
+  width: 20px;
+  height: 20px;
+  font-size: 18px;
+  text-align: center;
+}

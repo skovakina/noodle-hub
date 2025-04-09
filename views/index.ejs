@@ -13,5 +13,24 @@
         <a href="/auth/sign-in" class="btn btn-main">Sign In</a>
       </div>
     </div>
+
+    <section class="leaderboard-section">
+      <h2 class="leaderboard-title">🏆 Top Rated Restaurants</h2>
+      <% if (leaderboard.length > 0) { %>
+      <div class="leaderboard">
+        <% leaderboard.forEach((restaurant) => { %>
+
+        <div class="stars">
+          <% for (let i = 0; i < Math.min(Math.round(restaurant.rating), 5);
+          i++) { %>
+          <span class="star">⭐</span>
+          <% } %>
+        </div>
+
+        <div><%= restaurant.name %></div>
+        <% }) %>
+      </div>
+      <% } %>
+    </section>
   </body>
 </html>
