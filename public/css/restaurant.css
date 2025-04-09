@@ -14,11 +14,13 @@
 }
 
 .main-content {
+  border-top-left-radius: 16px;
   flex: 1;
   padding: 20px;
   margin-left: 200px;
   width: calc(100vw - 200px);
   margin-top: 80px;
+  background-color: var(--bg-dark);
 }
 
 .header {
