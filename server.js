@@ -16,7 +16,6 @@ const settingsController = require("./controllers/settings.js");
 const isSignedIn = require("./middleware/is-signed-in.js");
 const passUserToView = require("./middleware/pass-user-to-view.js");
 const Restaurant = require("./models/restaurant");
-const User = require("./models/user");
 
 const port = process.env.PORT ? process.env.PORT : "5000";
 
@@ -39,16 +38,6 @@ app.use(
 );
 
 app.use(passUserToView);
-
-app.use(async (req, res, next) => {
-  if (!req.session.user) {
-    let user = await User.findOne({ name: "John" });
-
-    req.session.user = { name: user.name, _id: user._id };
-    console.log("Auto-logged in as test user");
-  }
-  next();
-});
 
 app.get("/", async (req, res) => {
   try {

@@ -1,0 +1,94 @@
+.sidebar-container {
+  width: 200px;
+
+  height: 100vh;
+  position: fixed;
+}
+
+.menu {
+  margin-top: 52px;
+}
+
+.menu-group-title {
+  color: var(--parimary);
+}
+
+.menu-group-list {
+  margin: 12px 0;
+  color: var(--parimary);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.menu-group-list li {
+  margin-left: 28px;
+}
+
+.menu-item {
+  text-decoration: underline;
+  color: var(--parimary);
+  font-family: var(--font-primary);
+  text-decoration: none;
+  display: flex;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+.menu-item:hover {
+  background: var(--bg-dark);
+}
+
+.active {
+  background: var(--bg-secondary);
+}
+
+/* Toggle Button (shown only on small screens) */
+.sidebar-toggle-btn {
+  display: none;
+  background: var(--bg-dark, #333);
+  color: white;
+  padding: 10px 16px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 1001;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
+/* Sidebar default */
+.sidebar {
+  width: 200px;
+  padding: 20px;
+  height: 100vh;
+  position: fixed;
+
+  transition: transform 0.3s ease;
+}
+
+/* Hidden sidebar by default on small screens */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  #sidebar-toggle:checked ~ .sidebar {
+    transform: translateX(0);
+  }
+
+  .sidebar-toggle-btn {
+    display: block;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+}
+
+/* Regular spacing on desktop */
+@media (min-width: 769px) {
+  .main-content {
+    margin-left: 200px;
+  }
+}
